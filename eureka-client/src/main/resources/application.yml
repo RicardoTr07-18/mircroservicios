@@ -1,0 +1,26 @@
+server:
+  port: 8081
+
+info:
+  app:
+    name: Servicio Ejemplo
+    description: Este es un servicio de ejemplo registrado en Eureka
+    version: 1.0.0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health
+  info:
+    env:
+      enabled: true
+
+spring:
+  application:
+    name: servicio-cliente
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

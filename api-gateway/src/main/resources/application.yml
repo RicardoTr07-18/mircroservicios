@@ -1,0 +1,50 @@
+server:
+  port: 8080
+
+info:
+  app:
+    name: Cloud Api Gateway
+    description: Este es un servicio de cloud gateway
+    version: 1.0.0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health
+  info:
+    env:
+      enabled: true
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+          routes:
+            - id: servicio-cliente
+              uri: lb://servicio-cliente
+              predicates:
+                - Path=/servicio-cliente/**
+              filters:
+                - StripPrefix=1
+
+            - id: servicio-consumidor
+              uri: lb://servicio-consumidor
+              predicates:
+                - Path=/servicio-consumidor/**
+              filters:
+                - StripPrefix=1
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+

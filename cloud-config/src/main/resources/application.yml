@@ -1,9 +1,11 @@
 server:
-  port: 8888
+  port: 8888  # Puerto donde estará corriendo el Config Server
+
 spring:
   cloud:
     config:
       server:
         git:
-          uri: https://github.com/RicardoTr07-18/mircroservicios.git  # Cambia a la URL de tu repo
-          search-paths: '{application}'  # Busca en la carpeta según el nombre del microservicio
+          uri: https://github.com/RicardoTr07-18/mircroservicios.git  # URL de tu repositorio Git
+          search-paths: '{application}'  # Busca en la carpeta que lleva el mismo nombre que el microservicio
+        bootstrap: true  # Habilita la carga de configuración externa para los microservicios

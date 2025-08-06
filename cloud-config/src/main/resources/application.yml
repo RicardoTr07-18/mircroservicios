@@ -1,0 +1,9 @@
+server:
+  port: 8888
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/RicardoTr07-18/mircroservicios.git  # Cambia a la URL de tu repo
+          search-paths: '{application}'  # Busca en la carpeta según el nombre del microservicio
